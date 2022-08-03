@@ -9,6 +9,8 @@ def cloudfield():
     cf = pyarts.xml.load('export/cloudbox_field.xml')
     print(cf.shape)
     m = cf[:, 10, 0, 0, :, :, 0]
+    # PIL needs image data in dimensions [height, width, channels]
+    # so we need to transpose the array
     m = np.moveaxis(m, 0, -1)
     return m
 
